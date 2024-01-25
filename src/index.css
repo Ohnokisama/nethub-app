@@ -76,3 +76,7 @@ body {
   background: #121212;
   font-family: 'Satoshi';
 }
+
+html {
+  scroll-behavior: smooth;
+}
