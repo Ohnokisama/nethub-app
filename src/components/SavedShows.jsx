@@ -4,6 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { UserAuth } from '../context/AuthContext'
 import { db } from '../firebase'
 import { updateDoc, doc, onSnapshot } from 'firebase/firestore'
+import { Link } from 'react-router-dom'
 
 function SavedShows() {
   const {user} = UserAuth()
@@ -38,6 +39,15 @@ function SavedShows() {
     }
   }
 
+  const truncateString = (str, num) => {
+    if(str?.length > num) {
+      return str.slice(0, num) + '...'
+    } else {
+      return str
+    }
+  }
+
+
   return (
     <>
       <div className='px-6 md:px-12'>
@@ -50,7 +60,9 @@ function SavedShows() {
                 <div className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2' key={id}>
                   <img className='w-full h-full block' src={`https://image.tmdb.org/t/p/w500/${item?.img}`} alt={item?.title} />
                   <div className='absolute top-0 left-0 w-full h-full hover: bg-black/80 opacity-0 hover:opacity-100 text-white'>
-                    <p className='white-space-normal flex justify-center items-center h-full'>{item?.title}</p>
+                    <Link to={`/movie-details/${item?.id}`}>
+                      <p className='white-space-normal flex justify-center items-center h-full'>{truncateString(item?.title, 25)}</p>
+                    </Link>
                     <p className='absolute top-4 right-4 text-white' onClick={() => deleteShow(item.id)}><AiOutlineClose/></p>
                   </div>
                 </div>
