@@ -53,10 +53,10 @@ function MovieDetails() {
         </div>
         <div className="my-6">
           <p className="font-bold">Produced by:-</p>
-          <div className="flex my-4">
+          <div className="flex flex-wrap my-4">
             {
               companies.map(company => (
-                <div className='w-[200px] md:w-[15%] h-[200px] mr-6' key={company?.id}>
+                <div className='w-[40%] md:w-[15%] h-[200px] mr-6' key={company?.id}>
                   <img src={`https://image.tmdb.org/t/p/original/${company?.logo_path}`} alt={company?.name} className='w-full h-[70%] object-contain' />
                   <p className='text-center'>{company?.name}</p>
                 </div>
